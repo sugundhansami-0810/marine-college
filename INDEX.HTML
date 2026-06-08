@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRSS family Senior Secondary School (SRSS) Marian</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- DESIGN SYSTEM & CUSTOM PROPERTIES --- */
+        :root {
+            --academy-blue: #0B2545;
+            --marian-gold: #C5A059;
+            --roseline-crimson: #8B0000;
+            --bg-light: #F8F9FA;
+            --bg-dark: #13315C;
+            --white: #FFFFFF;
+            --text-dark: #222222;
+            --text-muted: #666666;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s ease-in-out;
+        }
+
+        /* --- GLOBAL RESETS --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--academy-blue);
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- REUSABLE COMPONENTS --- */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-padding {
+            padding: 90px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            text-transform: uppercase;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--marian-gold);
+            margin: 15px auto 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            min-height: 44px;
+            min-width: 44px;
+        }
+        .btn-primary {
+            background-color: var(--academy-blue);
+            color: var(--white);
+            border: 2px solid var(--academy-blue);
+        }
+        .btn-primary:hover {
+            background-color: var(--marian-gold);
+            border-color: var(--marian-gold);
+        }
+        .btn-gold {
+            background-color: var(--marian-gold);
+            color: var(--white);
+            border: 2px solid var(--marian-gold);
+        }
+        .btn-gold:hover {
+            background-color: var(--academy-blue);
+            border-color: var(--academy-blue);
+        }
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--marian-gold);
+        }
+        .btn-ghost:hover {
+            background-color: var(--marian-gold);
+            color: var(--academy-blue);
+        }
+
+        /* --- 1. HEADER & NAVIGATION --- */
+        .header {
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        /* Custom Vector Style Logo */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-emblem {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--academy-blue), var(--bg-dark));
+            border: 2px solid var(--marian-gold);
+            border-radius: 0 0 50% 50%; /* Shield effect */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--marian-gold);
+            font-size: 1.2rem;
+        }
+        .logo-text h2 {
+            font-size: 1.1rem;
+            line-height: 1.2;
+        }
+        .logo-text span {
+            font-size: 0.75rem;
+            display: block;
+            color: var(--marian-gold);
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .navbar ul {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--academy-blue);
+        }
+        .navbar a:hover {
+            color: var(--marian-gold);
+        }
+        .nav-btn {
+            padding: 8px 20px;
+        }
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--academy-blue);
+            cursor: pointer;
+        }
+
+        /* --- 2. HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(19, 49, 92, 0.5);
+            z-index: -1;
+        }
+        .hero-content h1 {
+            color: var(--white);
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+        .hero-content p {
+            color: var(--marian-gold);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        /* --- 3. SERVICES SECTION --- */
+        .services-section {
+            background-color: var(--bg-light);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 13fr);
+            gap: 30px;
+        }
+        .service-card {
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--marian-gold);
+            margin-bottom: 20px;
+        }
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+
+        /* --- 4. CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-body);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .info-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--marian-gold);
+            margin-top: 5px;
+        }
+        .map-container {
+            width: 100%;
+            height: 200px;
+            background-color: #eee;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-muted);
+        }
+
+        /* --- 5. FOOTER --- */
+        .footer {
+            background-color: var(--bg-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-logo h2 {
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .footer-col h3 {
+            color: var(--marian-gold);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-col a:hover {
+            color: var(--marian-gold);
+            padding-left: 5px;
+        }
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: var(--white);
+        }
+        .social-links a:hover {
+            background-color: var(--marian-gold);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        /* --- 6. ADMISSIONS SECTION --- */
+        .admissions-section {
+            background-color: var(--bg-light);
+            clip-path: polygon(0 0, 100% 4vw, 100% 100%, 0 100%);
+            padding-top: 130px;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-bottom: 50px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+        .timeline-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 30%;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--white);
+            border: 3px solid var(--academy-blue);
+            color: var(--academy-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin: 0 auto 20px;
+            transition: var(--transition);
+        }
+        .timeline-step:hover .step-number {
+            background-color: var(--marian-gold);
+            border-color: var(--marian-gold);
+            color: var(--white);
+        }
+        .admissions-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* --- 7. NOTIFICATIONS / ANNOUNCEMENTS --- */
+        .announcements-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .announcement-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-left: 5px solid var(--academy-blue);
+            background-color: var(--bg-light);
+            border-radius: 0 4px 4px 0;
+        }
+        .announcement-item.critical {
+            border-left-color: var(--roseline-crimson);
+        }
+        .announcement-tag {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: var(--white);
+            background-color: var(--academy-blue);
+            text-transform: uppercase;
+        }
+        .announcement-tag.crit {
+            background-color: var(--roseline-crimson);
+        }
+
+        /* --- 8. ACHIEVEMENTS SECTION --- */
+        .achievements-section {
+            background-color: var(--academy-blue);
+            color: var(--white);
+            text-align: center;
+        }
+        .achievements-section .section-title {
+            color: var(--white);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .stat-item h2 {
+            color: var(--marian-gold);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* --- 9. UNIQUENESS / DIFFS (MARIAN HIGHLIGHT) --- */
+        .uniqueness-section {
+            background-color: #FAF6EE;
+        }
+        .uniqueness-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 40px;
+            align-items: stretch;
+        }
+        .marian-highlight-box {
+            background-color: var(--white);
+            border: 3px solid var(--marian-gold);
+            padding: 50px 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+        }
+        .marian-highlight-box h3 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            color: var(--academy-blue);
+        }
+        .secondary-diffs {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .diff-card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        /* --- 10. HOSTELS SECTION --- */
+        .hostel-block {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        .hostel-block.reverse {
+            flex-direction: row-reverse;
+        }
+        .hostel-image, .hostel-text {
+            flex: 1;
+        }
+        .hostel-image-placeholder {
+            width: 100%;
+            height: 350px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-family: var(--font-heading);
+        }
+        .hostel-text h3 {
+            font-size: 1.75rem;
+            margin-bottom: 15px;
+        }
+        .hostel-features {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .hostel-features li {
+            font-size: 0.95rem;
+        }
+        .hostel-features i {
+            color: var(--marian-gold);
+            margin-right: 8px;
+        }
+
+        /* --- 11. FEES & PRICING --- */
+        .fees-section {
+            background-color: var(--bg-light);
+        }
+        .table-responsive {
+            overflow-x: auto;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .fees-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .fees-table th, .fees-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid #eee;
+        }
+        .fees-table th {
+            background-color: var(--academy-blue);
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+        .fees-table tr:last-child td {
+            border-bottom: none;
+        }
+        .fees-table tr:hover {
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+        .fee-highlight {
+            font-weight: 700;
+            color: var(--academy-blue);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .services-grid, .stats-grid, .uniqueness-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .hostel-block, .hostel-block.reverse {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-padding { padding: 60px 0; }
+            .hamburger { display: block; }
+            .navbar { display: none; } /* Simplified for structural HTML template */
+            .services-grid, .contact-grid, .stats-grid, .uniqueness-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .timeline::before { display: none; }
+            .timeline-step { width: 100%; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-content h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo-area">
+                <div class="logo-emblem"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="logo-text">
+                    <h2>SRSS MARIAN</h2>
+                    <span>ST. ROSELINE'S</span>
+                </div>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#admissions">Admissions</a></li>
+                    <li><a href="#announcements">Announcements</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#uniqueness">Marian Core</a></li>
+                    <li><a href="#hostels">Hostels</a></li>
+                    <li><a href="#fees">Fees</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#admissions" class="btn btn-primary nav-btn">Apply Now</a>
+            <div class="hamburger"><i class="fa-solid fa-bars"></i></div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-video-under-an-unfocused-light-11913-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Nurturing Minds, Shaping Leaders,<br>Living the Marian Tradition.</h1>
+            <p>Welcome to St. Roseline's Senior Secondary School</p>
+            <a href="#uniqueness" class="btn btn-ghost">Explore Our Campus</a>
+        </div>
+    </section>
+
+    <section id="services" class="services-section section-padding">
+        <div class="container">
+            <h2 class="section-title">Our Services & Ecosystem</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                    <h3>Academic Excellence</h3>
+                    <p>Advanced STEM and Humanities streams supported by cutting edge digital smart learning ecosystems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-volleyball"></i></div>
+                    <h3>Holistic Sports Development</h3>
+                    <p>Olympic-standard athletic running tracks, large sports arenas, and elite certified physical coaching systems.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3>Global Career Counseling</h3>
+                    <p>Rigorous, dedicated profiling paths and strategic placement support maps for top premium world universities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="admissions" class="admissions-section section-padding">
+        <div class="container">
+            <h2 class="section-title">Admissions Process</h2>
+            <div class="timeline">
+                <div class="timeline-step">
+                    <div class="step-number">01</div>
+                    <h3>Online Inquiry</h3>
+                    <p>Submit basic entry declarations online via the structured primary application portal.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">02</div>
+                    <h3>Academic Mapping</h3>
+                    <p>Participate in mutual interaction matrices and fundamental skill mapping indices.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="step-number">03</div>
+                    <h3>Verification</h3>
+                    <p>Final documentation review and authentic formal entry verification cycles.</p>
+                </div>
+            </div>
+            <div class="admissions-cta">
+                <a href="#" class="btn btn-gold">Download Prospectus 2026</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="announcements" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Announcements & Alerts</h2>
+            <div class="announcements-list">
+                <div class="announcement-item critical">
+                    <span class="announcement-tag crit">Critical</span>
+                    <div>
+                        <strong>Admissions open for Academic Year 2026-2027.</strong> Final processing allocations close by end of cycle.
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <span class="announcement-tag">Notice</span>
+                    <div>
+                        <strong>Upcoming Semester Parent-Teacher Guild Assembly</strong> scheduled for this Saturday.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements-section section-padding">
+        <div class="container">
+            <h2 class="section-title">Institutional Milestones</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2>100%</h2>
+                    <p>Board Examination Pass Rate</p>
+                </div>
+                <div class="stat-item">
+                    <h2>45+</h2>
+                    <p>Inter-School Trophies</p>
+                </div>
+                <div class="stat-item">
+                    <h2>15:1</h2>
+                    <p>Student-to-Teacher Ratio</p>
+                </div>
+                <div class="stat-item">
+                    <h2>10k+</h2>
+                    <p>Global Active Alumni Network</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="uniqueness" class="uniqueness-section section-padding">
+        <div class="container">
+            <h2 class="section-title">The Strategic Differentiators</h2>
+            <div class="uniqueness-grid">
+                <div class="marian-highlight-box">
+                    <span style="color: var(--marian-gold); font-weight: bold; text-transform: uppercase; font-size: 0.85rem;"><i class="fa-solid fa-star"></i> Primary Pillar</span>
+                    <h3>The Marian Edge: Values-Based Leadership Training</h3>
+                    <p>Our defining signature layer is the mandatory, core <strong>Marian Training Matrix</strong>. We deliberately blend deep academic performance with rigorous character architecture, service leadership, and strict ethical accountability frameworks. Students are trained under high-performance templates engineered to shape global citizens rooted in core communal values.</p>
+                </div>
+                <div class="secondary-diffs">
+                    <div class="diff-card">
+                        <h4>Advanced Infrastructure Integration</h4>
+                        <p>Fully augmented classrooms and immersive technical learning environments.</p>
+                    </div>
+                    <div class="diff-card">
+                        <h4>Eco-Sustainable Campus</h4>
+                        <p>Green systems design and smart resource management parameters.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="hostels" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Campus Living & Hostels</h2>
+            
+            <div class="hostel-block">
+                <div class="hostel-image">
+                    <div class="hostel-image-placeholder">[ Boys Residence Complex ]</div>
+                </div>
+                <div class="hostel-text">
+                    <h3>St. Thomas Boys Residence</h3>
+                    <p>A secure environment designed to balance focused academic study spaces with collaborative recreational lounges.</p>
+                    <ul class="hostel-features">
+                        <li><i class="fa-solid fa-check"></i> 24/7 Security & Wardens</li>
+                        <li><i class="fa-solid fa-check"></i> High-Speed Study Pods</li>
+                        <li><i class="fa-solid fa-check"></i> Medical Diagnostics Room</li>
+                        <li><i class="fa-solid fa-check"></i> Structured Fitness Gym</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="hostel-block reverse">
+                <div class="hostel-image">
+                    <div class="hostel-image-placeholder">[ Girls Residence Complex ]</div>
+                </div>
+                <div class="hostel-text">
+                    <h3>St. Mary Girls Residence</h3>
+                    <p>Providing pristine living conditions emphasizing individual privacy controls, strict protection rings, and supportive developmental modules.</p>
+                    <ul class="hostel-features">
+                        <li><i class="fa-solid fa-check"></i> Bio-Metric Security Matrix</li>
+                        <li><i class="fa-solid fa-check"></i> Wellness & Mental Counseling</li>
+                        <li><i class="fa-solid fa-check"></i> In-House Nutrition Experts</li>
+                        <li><i class="fa-solid fa-check"></i> Recreational Amphitheater</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fees" class="fees-section section-padding">
+        <div class="container">
+            <h2 class="section-title">Transparent Fee Structure</h2>
+            <div class="table-responsive">
+                <table class="fees-table">
+                    <thead>
+                        <tr>
+                            <th>Grade Band / Program Path</th>
+                            <th>Annual Tuition Fee</th>
+                            <th>Key Inclusions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Primary & Middle School</strong> (Grades 1 - 8)</td>
+                            <td class="fee-highlight">₹ 25,000</td>
+                            <td>Core Academic Curriculum, Basic Computer Labs, Primary Field Sports</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Secondary School</strong> (Grades 9 & 10)</td>
+                            <td class="fee-highlight">₹ 95,000</td>
+                            <td>Laboratory Consumables, Secondary Skill Electives, Advanced Aptitude Profiling</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Senior Secondary (Marian Scholars)</strong> (Grades 11 & 12)</td>
+                            <td class="fee-highlight">Hex-Limit: ₹ 2,00,000</td>
+                            <td>Advanced Stream Modules, Exclusive Marian Leadership Track, Competitive Preparation Vectors</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Connect With Us</h2>
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <form action="#" method="POST" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Active Email ID" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Contact Mobile Number" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Specify Your Inquiry Details Here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Secure Inquiry</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h4>Campus Address</h4>
+                            <p>Marian Hills, Academic Boulevard, Suite 10, Salem, TN, India</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h4>Registrar Office Phones</h4>
+                            <p>+91 (427) 555-0192 / +91 (427) 555-0199</p>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <p><i class="fa-solid fa-map-location-dot"></i> GIS Interactive Campus Map Engine Container</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo">
+                    <h2>SRSS MARIAN</h2>
+                    <p>Fostering academic dominance, holistic moral clarity, and authentic global values-driven leadership tracking elements since inception.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#admissions">Admissions Portal</a></li>
+                        <li><a href="#announcements">Announcements</a></li>
+                        <li><a href="#fees">Fee Disclosures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Legal Tracks</h3>
+                    <ul>
+                        <li><a href="#">Privacy Framework</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Non-Discrimination Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Helpdesk</h3>
+                    <p>Inquiries: info@srssmarian.edu.in<br>Support: desk@srssmarian.edu.in</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 St. Roseline's Senior Secondary School (SRSS) Marian. All Rights Reserved. Designed by UX Specialists.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

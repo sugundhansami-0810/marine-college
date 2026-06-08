@@ -1,0 +1,946 @@
+/* 
+   ST. ROSELINE’S SENIOR SECONDARY SCHOOL (SRSS) MARIAN
+   COMPLETE VISUAL LAYOUT & COMPONENT STYLESHEET
+*/
+
+/* --- 1. BRAND DESIGN SYSTEM & VARIABLE MATRIX --- */
+:root {
+    /* Primary Color Identity */
+    --academy-blue: #0B2545;       /* Deep administrative navy */
+    --marian-gold: #C5A059;        /* Warm academic gold for anchors, highlights, and borders */
+    --roseline-crimson: #8B0000;   /* Accent red utilized strictly for alerts/notices */
+    
+    /* Surface & Background Gradients */
+    --bg-light: #F8F9FA;           /* Off-white section alternate surface */
+    --bg-dark: #13315C;            /* Midnight blue for deep container basements like footers */
+    --bg-cream: #FAF6EE;           /* Contrast accent tone container used for brand differentiators */
+    --white: #FFFFFF;
+    
+    /* Neutrals & Typography Colors */
+    --text-dark: #1C2A39;
+    --text-muted: #627284;
+    --border-color: #E2E8F0;
+    
+    /* Typography Typography Stacks */
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Animation Speeds & Shadow Maps */
+    --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(11, 37, 69, 0.08), 0 4px 6px -2px rgba(11, 37, 69, 0.04);
+    --shadow-lg: 0 20px 25px -5px rgba(11, 37, 69, 0.12), 0 10px 10px -5px rgba(11, 37, 69, 0.06);
+}
+
+/* --- 2. GLOBAL RESET & DOCUMENT FOUNDATIONS --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background-color: var(--white);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 80px; /* Prevents hero structural compression under fixed header */
+}
+
+/* --- 3. REUSABLE UTILITY ATOMS --- */
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    color: var(--academy-blue);
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--marian-gold);
+    margin: 20px auto 0;
+}
+
+/* Base Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 44px;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--academy-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--marian-gold);
+    border-color: var(--marian-gold);
+}
+
+.btn-gold {
+    background-color: var(--marian-gold);
+    color: var(--white);
+}
+
+.btn-gold:hover {
+    background-color: var(--academy-blue);
+    border-color: var(--academy-blue);
+}
+
+.btn-ghost {
+    background-color: transparent;
+    color: var(--white);
+    border-color: var(--marian-gold);
+}
+
+.btn-ghost:hover {
+    background-color: var(--marian-gold);
+    color: var(--academy-blue);
+}
+
+/* --- 4. NAVIGATION BAR & STICKY HEADER --- */
+.header {
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.header.header-scrolled {
+    box-shadow: var(--shadow-md);
+    background-color: rgba(255, 255, 255, 0.99);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-emblem {
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, var(--academy-blue), var(--bg-dark));
+    border: 2px solid var(--marian-gold);
+    border-radius: 0 0 24px 24px; /* Distinct protective coat of arms arc */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--marian-gold);
+    font-size: 1.3rem;
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.2);
+}
+
+.logo-text h2 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--academy-blue);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.logo-text span {
+    font-size: 0.75rem;
+    display: block;
+    color: var(--marian-gold);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+
+.navbar a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--academy-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    position: relative;
+    padding: 6px 0;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--marian-gold);
+    transition: var(--transition);
+}
+
+.navbar a:hover::after,
+.navbar a.active-link::after {
+    width: 100%;
+}
+
+.navbar a.active-link {
+    color: var(--marian-gold);
+}
+
+.nav-btn {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--academy-blue);
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 8px;
+}
+
+/* --- 5. IMMERSIVE VIDEO BACKGROUND HERO --- */
+.hero {
+    height: calc(100vh - 80px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    z-index: -2;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(11, 37, 69, 0.75) 0%,
+        rgba(19, 49, 92, 0.55) 100%
+    );
+    z-index: -1;
+}
+
+.hero-content h1 {
+    color: var(--white);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content p {
+    color: var(--marian-gold);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* --- 6. CORE SERVICES & ECOSYSTEM --- */
+.services-section {
+    background-color: var(--bg-light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--white);
+    padding: 50px 35px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(197, 160, 89, 0.3);
+}
+
+.service-icon {
+    font-size: 2.8rem;
+    color: var(--marian-gold);
+    margin-bottom: 24px;
+    display: inline-block;
+}
+
+.service-card h3 {
+    margin-bottom: 16px;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.service-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- 7. TIMELINE ADMISSIONS ENGINE --- */
+.admissions-section {
+    position: relative;
+    background-color: var(--white);
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 40px 0 60px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 8%;
+    width: 84%;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.timeline-step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    width: 28%;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background-color: var(--white);
+    border: 3px solid var(--academy-blue);
+    color: var(--academy-blue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0 auto 24px;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.timeline-step:hover .step-number {
+    background-color: var(--marian-gold);
+    border-color: var(--marian-gold);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.timeline-step h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.timeline-step p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.admissions-cta {
+    text-align: center;
+}
+
+/* --- 8. ALERTS & ANNOUNCEMENTS --- */
+.announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.announcement-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 30px;
+    border-left: 6px solid var(--academy-blue);
+    background-color: var(--bg-light);
+    border-radius: 0 6px 6px 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.announcement-item.critical {
+    border-left-color: var(--roseline-crimson);
+    background-color: rgba(139, 0, 0, 0.02);
+}
+
+.announcement-tag {
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--white);
+    background-color: var(--academy-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.announcement-tag.crit {
+    background-color: var(--roseline-crimson);
+}
+
+.announcement-item p {
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+/* --- 9. ANIMATED MILESTONES COUNTER --- */
+.achievements-section {
+    background: linear-gradient(135deg, var(--academy-blue) 0%, var(--bg-dark) 100%);
+    color: var(--white);
+}
+
+.achievements-section .section-title {
+    color: var(--white);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item h2 {
+    color: var(--marian-gold);
+    font-size: 3.8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 12px;
+    font-family: var(--font-body); /* Standard tracking metrics for numerals */
+}
+
+.stat-item p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- 10. UNIQUENESS & MARIAN TRAINING MATRIX --- */
+.uniqueness-section {
+    background-color: var(--bg-cream);
+}
+
+.uniqueness-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.marian-highlight-box {
+    background-color: var(--white);
+    border: 3px solid var(--marian-gold);
+    padding: 55px 45px;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(197, 160, 89, 0.12);
+    position: relative;
+}
+
+.marian-highlight-box .pillar-tag {
+    color: var(--marian-gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.marian-highlight-box h3 {
+    font-size: 1.85rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.marian-highlight-box p {
+    color: var(--text-dark);
+    font-size: 1.05rem;
+}
+
+.secondary-diffs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.diff-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.diff-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.diff-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- 11. HOSTELS RESIDENCE BLOCKS --- */
+.hostel-block {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+.hostel-block:last-child {
+    margin-bottom: 0;
+}
+
+.hostel-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.hostel-image, .hostel-text {
+    flex: 1;
+    width: 50%;
+}
+
+.hostel-image-placeholder {
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--academy-blue);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.4rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.hostel-image-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 14px;
+    color: var(--marian-gold);
+}
+
+.hostel-text h3 {
+    font-size: 1.9rem;
+    margin-bottom: 16px;
+}
+
+.hostel-text p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.hostel-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    list-style: none;
+}
+
+.hostel-features li {
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hostel-features i {
+    color: var(--marian-gold);
+    font-size: 1.1rem;
+}
+
+/* --- 12. TRANSPARENT PRICING & FEES MATRIX --- */
+.fees-section {
+    background-color: var(--bg-light);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.fees-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    min-width: 750px;
+}
+
+.fees-table th, .fees-table td {
+    padding: 22px 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.fees-table th {
+    background-color: var(--academy-blue);
+    color: var(--white);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.fees-table tr:last-child td {
+    border-bottom: none;
+}
+
+.fees-table tr:hover td {
+    background-color: rgba(197, 160, 89, 0.03);
+}
+
+.fee-highlight {
+    font-weight: 700;
+    color: var(--academy-blue);
+    font-size: 1.1rem;
+}
+
+/* --- 13. DATA CAPTURE CONTACT SLIDERS --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 12fr 10fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-light);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--marian-gold);
+    background-color: var(--white);
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.info-item i {
+    font-size: 1.6rem;
+    color: var(--marian-gold);
+    background-color: rgba(197, 160, 89, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+.info-item p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 230px;
+    background-color: #E2E8F0;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--academy-blue);
+    font-weight: 600;
+    gap: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.map-container i {
+    font-size: 2rem;
+    color: var(--marian-gold);
+}
+
+/* --- 14. ANCHORED SITE BASE FOOTER --- */
+.footer {
+    background-color: var(--bg-dark);
+    color: rgba(255, 255, 255, 0.75);
+    padding: 80px 0 30px;
+    font-size: 0.95rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.2fr;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.footer-logo h2 {
+    color: var(--white);
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+}
+
+.footer-logo p {
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-col h3 {
+    color: var(--marian-gold);
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.75);
+    transition: var(--transition);
+}
+
+.footer-col a:hover {
+    color: var(--marian-gold);
+    padding-left: 6px;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+}
+
+.social-links a {
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: var(--white);
+}
+
+.social-links a:hover {
+    background-color: var(--marian-gold);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* --- 15. RESPONSIVE ADAPTATION MEDIA QUERIES --- */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .uniqueness-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    .hostel-block, .hostel-block.reverse {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .hostel-image, .hostel-text {
+        width: 100%;
+    }
+    .hostel-image-placeholder {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+    .header {
+        height: 70px;
+    }
+    .hamburger {
+        display: block;
+    }
+    .navbar {
+        display: none; /* Controlled via mobile javascript toggle state */
+    }
+    .header .btn-primary {
+        display: none; /* Conceals secondary actions on space-restricted headers */
+    }
+    .section-padding {
+        padding: 70px 0;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .timeline {
+        flex-direction: column;
+        gap: 40px;
+        margin: 20px 0;
+    }
+    .timeline::before {
+        display: none;
+    }
+    .timeline-step {
+        width: 100%;
+    }
+    .step-number {
+        margin-bottom: 12px;
+    }
+    .announcement-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .marian-highlight-box {
+        padding: 35px 25px;
+    }
+    .hostel-features {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+}
